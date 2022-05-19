@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style media="screen">
+	.center{
+	text-align: center!important;
+	}
+</style>    
+</head>
+<body>
+    <br><br>
+    <h2 class="center">P&L</h2>
+    <h3 class="center"><%= totalPL %></h3>
+    <a href="/home"><h3>Home</h3></a>
+    <a href="/mywatchlist"><h3>Watchlist</h3></a>
+    <a href="/tradehistory"><h3>Trade Book</h3></a>
+
+    <h2>Positions</h2>
+    <blockquote>
+        <% if(positions == 0){ %>
+            <h3>No Positions taken</h3>
+            <h3>Take Positions from Watchlist</h3>
+        <% }else{ %>
+            <% for(var i = 0; i < positions.length; i++){ %>
+                <h3><%= positions[i].symbol %></h3>
+                <blockquote>
+                    <% if(positions[i].mode == "buy"){ %>
+                        <blockquote>
+                            <form action="/tradehistory" method="post">
+                                <input type="hidden" name="mode" value=<%= positions[i].mode %>>
+                                <input type="hidden" name="symbol" value=<%= positions[i].symbol %>>
+                                <input type="hidden" name="quantity" value=<%= positions[i].quantity %>>
+                                <input type="hidden" name="individualPL" value=<%= individualPL[i] %>>
+                                <input type="hidden" name="price" value=<%= positions[i].price %>>
+                                <button type="submit">Exit</button>
+                            </form>
+                        </blockquote>
+                        <h3>Quantity bought: <%= positions[i].quantity %></h3>
+                        <h3>Current Price: <%= currentPrice[i] %> </h3>
+                        <h3>Bought Price: <%= positions[i].price %></h3>
+                        <h3>P&L: <%= individualPL[i] %></h3>
+                    <% }else{ %>
+                        <blockquote>
+                            <form action="/tradehistory" method="post">
+                                <input type="hidden" name="mode" value=<%= positions[i].mode %>>
+                                <input type="hidden" name="symbol" value=<%= positions[i].symbol %>>
+                                <input type="hidden" name="quantity" value=<%= positions[i].quantity %>>
+                                <input type="hidden" name="individualPL" value=<%= individualPL[i] %>>
+                                <button type="submit">Exit</button>
+                            </form>
+                        </blockquote>
+                        <h3>Quantity sold: <%= positions[i].quantity %></h3>
+                        <h3>Current Price: <%= currentPrice[i] %> </h3>
+                        <h3>Sold Price: <%= positions[i].price %></h3>
+                        <h3>P&L: <%= individualPL[i] %></h3>
+                    <% } %>
+                </blockquote>
+            <% } %>
+        <% } %>   
+    </blockquote>
+    
+</body>
+</html>

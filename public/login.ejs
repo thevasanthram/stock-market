@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style media="screen">
+	body{
+	text-align: center!important;
+	}
+</style>    
+</head>
+<body>
+    <br><br><br>
+    <h1>Please Login</h1>
+    <form action="/login" method="post">
+        <label for="email">E-mail Address</label>
+        <input type="text" name="email" class="form-control" id="email" placeholder="username@example.com" required autofocus>
+        <br><br>
+        <label class="sr-only" for="password">Password</label>
+        <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+        <br><br>
+        <button type="submit" class="btn btn-success"><i class="fa fa-sign-in"></i> Login</button>
+        <% if (flag == true){ %>
+            <p>Invalid Credentials. Try again</p>
+        <% }%>
+        <a class="btn btn-link" href="/register">Register</a>
+
+    </form>
+</body>
+</html>

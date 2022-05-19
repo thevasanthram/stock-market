@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Stock Detail</title>
+    </head>
+        <body>
+            <% for(var i = 0; i<dataFromResponse.length; i++){ %>
+            <% var dataOfStock = dataFromResponse[i] %>
+            <h1><strong><%= i+1 %>) <%= dataOfStock.symbol %></strong></h1>
+            <blockquote>
+                <h2> Open: <%= dataOfStock.open %></h2>
+                <h2> Day High: <%= dataOfStock.dayHigh %></h2>
+                <h2> Day Low: <%= dataOfStock.dayLow %></h2>
+                <h2> Last Price: <%= dataOfStock.lastPrice %></h1>
+                <h2> Previous Close: <%= dataOfStock.previousClose %></h2>
+                <h2> Year High: <%= dataOfStock.yearHigh %></h2>
+                <h2> Year Low: <%= dataOfStock.yearLow %></h2>
+                <h2> Last Update Time: <%= dataOfStock.lastUpdateTime %></h2>
+            </blockquote>
+            <br><br><br><br><br>
+            <% } %>
+        </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watchlist</title>
+    <style media="screen">
+	.center{
+	text-align: center!important;
+	}
+</style>    
+</head>
+<body>
+    <br><br>
+    <a href="/addstock" class="center"><h1>Add Stock</h1></a>
+    <a href="/home"><h3>Home</h3></a>
+    <a href="/portfolio"><h3>Portfolio</h3></a>
+    <a href="/tradehistory"><h3>Trade Book</h3></a>
+
+    <h2>Watchlist:</h2>
+    <% if(Watchlist == 0){ %>
+        <blockquote>
+            <h3>No watchlist added</h3>
+        </blockquote>
+        
+    <% } else { %>
+        <% for(var i = 0 ; i < Watchlist.length ; i++) { %>
+            <% for(var j = 0; j < dataFromResponse.length; j ++) { %>
+                <% if(dataFromResponse[j].symbol == Watchlist[i] ) {%>
+                    <blockquote>
+                        <h2><%= dataFromResponse[j].symbol %></h2>
+                        <blockquote>
+                            <form action="/transaction" method="post">
+                                <input type="hidden" name="symbol" value=<%= dataFromResponse[j].symbol %>>
+                                <input type="hidden" name="price" value=<%= dataFromResponse[j].lastPrice %>>
+                                <button type="submit">Order</button>
+                            </form>
+                            <h3>Last Price: <%= dataFromResponse[j].lastPrice %></h3>
+                            <h3>Day High: <%= dataFromResponse[j].dayHigh %></h3>
+                            <h3>Day Low: <%= dataFromResponse[j].dayLow %></h3>
+                            <form action="/deletestock" method="post">
+                                <input type="hidden" name="stockSelected" value=<%= dataFromResponse[j].symbol %>>
+                                <button type="submit">Delete</button>
+                            </form>
+                        </blockquote>
+                    </blockquote>
+                <% } %>
+        <% } %>
+    <% } %>
+    <% } %>
+    <br>
+</body>
+</html>

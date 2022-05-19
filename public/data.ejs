@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title>Fetch a Stock</title>
+<style media="screen">
+	body{
+	text-align: center!important;
+	}
+</style>
+</head>
+<body>
+<h1>Fetch the Data Related to Any Stock</h1>
+<br>
+	<h2>Select the Stock</h2>
+	<form class="" action="/data" method="post">
+		<select class="" name="stockSelected">
+		<% for(var i = 1; i<dataFromResponse.length; i++) { %>
+			<option value= <%= dataFromResponse[i].symbol %> >
+			<%= dataFromResponse[i].symbol %>
+			</option>
+		<% } %>
+		</select>
+		<button type="submit"
+				name="button">
+		Fetch Data
+		</button>
+	</form>
+</body>
+</html>
