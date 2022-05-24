@@ -453,6 +453,6 @@ app.get('/logout' , (req, res)=>{
     res.redirect('/login')
 })
 
-app.listen(3000, ()=>{
-    console.log("server listening on the port 3000")
+app.listen(80, ()=>{
+    console.log("server listening on the port 80")
 });
